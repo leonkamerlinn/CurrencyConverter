@@ -46,9 +46,9 @@ public class RatesFragment extends Fragment {
         RatesAdapter adapter = new RatesAdapter(getContext());
         binding.recyclerView.setAdapter(adapter);
 
-        mainActivity.getViewModel().getCurrencies().observe(getViewLifecycleOwner(), iCurrencies -> {
+        mainActivity.getViewModel().getRateCurrencies().observe(getViewLifecycleOwner(), iCurrencies -> {
             CurrencyDiffUtilCallback diffUtil = new CurrencyDiffUtilCallback(iCurrencies, new ArrayList<>(adapter.getAll()));
-            adapter.update(iCurrencies, diffUtil);
+            adapter.update(iCurrencies, null);
         });
 
 

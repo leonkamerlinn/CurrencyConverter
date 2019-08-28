@@ -26,7 +26,8 @@ public class MainViewModel extends AndroidViewModel {
     private final RatesFragment mRatesFragment;
     private final ConverterFragment mConverterFragment;
     private int mCounter = 0;
-    private MutableLiveData<List<Currency>> mCurrencies = new MutableLiveData<>();
+    private MutableLiveData<List<Currency>> mConverterCurrencies = new MutableLiveData<>();
+    private MutableLiveData<List<Currency>> mRateCurrencies = new MutableLiveData<>();
     private String mCurrencyCode = Currency.EUR;
 
     private ReplaySubject<Boolean> mBooleanReplaySubject = ReplaySubject.create();
@@ -56,36 +57,41 @@ public class MainViewModel extends AndroidViewModel {
                     Currency.base = currency.getCurrencyCode();
 
                     if (mCounter == 0) {
-                        setCurrencies(currencyList);
+                        setConverterCurrencies(currencyList);
+
                     } else {
                        mBooleanReplaySubject.onNext(true);
                     }
 
-
+                    mRateCurrencies.setValue(currencyList);
 
                     mCounter++;
                 });
     }
 
-    public Observable<Boolean> getUpdateObservale() {
+    public LiveData<List<Currency>> getRateCurrencies() {
+        return mRateCurrencies;
+    }
+
+    public Observable<Boolean> getChangeObservable() {
         return mBooleanReplaySubject;
     }
 
-    public LiveData<List<Currency>> getCurrencies() {
-        return mCurrencies;
+    public LiveData<List<Currency>> getConverterCurrencies() {
+        return mConverterCurrencies;
     }
 
     public void setCurrencyCode(String currencyCode) {
         mCurrencyCode = currencyCode;
     }
 
-    public void setCurrencies(List<Currency> currencyList) {
-        mCurrencies.setValue(currencyList);
+    public void setConverterCurrencies(List<Currency> currencyList) {
+        mConverterCurrencies.setValue(currencyList);
     }
 
     public void swap(int index) {
 
-        List<Currency> currencyList = getCurrencies().getValue();
+        List<Currency> currencyList = getConverterCurrencies().getValue();
 
 
         Currency currency = currencyList.get(index);
@@ -93,7 +99,7 @@ public class MainViewModel extends AndroidViewModel {
         Currency.base = currency.getCurrencyCode();
         Currency.rates = currency.getRates();
         Collections.swap(currencyList, 0, index);
-        setCurrencies(currencyList);
+        setConverterCurrencies(currencyList);
     }
 
     public ConverterFragment getConverterFragment() {

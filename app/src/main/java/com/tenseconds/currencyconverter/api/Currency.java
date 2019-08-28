@@ -45,8 +45,12 @@ public abstract class Currency {
     public static final String USD = "USD";
     public static final String ZAR = "ZAR";
 
-    public static String formatDecimal(float number) {
+    public static String valueFormat(float number) {
         return String.format("%10.2f", number);
+    }
+
+    public static String rateformat(float number) {
+        return String.format("%10.4f", number);
     }
 
     public static String[] getCurrencyCodes() {
@@ -108,11 +112,11 @@ public abstract class Currency {
     }
 
     public String getRateFormat() {
-        return Currency.formatDecimal(getRate());
+        return Currency.rateformat(getRate());
     }
 
     public String getValueFormat() {
-        return Currency.formatDecimal(getValue());
+        return Currency.valueFormat(getValue());
     }
 
     @Override

@@ -36,8 +36,6 @@ public class CurrencyDiffUtilCallback extends DiffUtil.Callback {
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         Currency oldItem = mOldList.get(oldItemPosition);
         Currency newItem = mNewList.get(newItemPosition);
-        System.out.println(oldItem.getValue());
-        System.out.println(newItem.getValue());
         return oldItem.equals(newItem);
     }
 }

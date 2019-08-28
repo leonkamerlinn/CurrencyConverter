@@ -57,7 +57,7 @@ public class ConverterFragment extends Fragment {
         adapter = new ConverterAdapter(getContext());
         binding.recyclerView.setAdapter(adapter);
 
-        mainActivity.getViewModel().getCurrencies().observe(getViewLifecycleOwner(), iCurrencies -> {
+        mainActivity.getViewModel().getConverterCurrencies().observe(getViewLifecycleOwner(), iCurrencies -> {
             CurrencyDiffUtilCallback diffUtil = new CurrencyDiffUtilCallback(iCurrencies, new ArrayList<>(adapter.getAll()));
             adapter.update(iCurrencies, null);
 
@@ -68,7 +68,7 @@ public class ConverterFragment extends Fragment {
            mainActivity.getViewModel().setCurrencyCode(currencyViewHolder.getCurrencyCode());
         });
 
-        mainActivity.getViewModel().getUpdateObservale().subscribe(adapter);
+        mainActivity.getViewModel().getChangeObservable().subscribe(adapter);
 
 
         swapCurrencyOnClick(adapter);

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,8 @@ public class ConverterAdapter extends MjolnirRecyclerAdapter<Currency> implement
     @Override
     public void accept(Boolean aBoolean) throws Exception {
         notifyExceptFocusedPosition();
-        System.out.println(aBoolean);
+
+        Log.i("a", "a");
     }
 
 
@@ -133,31 +135,42 @@ public class ConverterAdapter extends MjolnirRecyclerAdapter<Currency> implement
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    if (charSequence == null || charSequence.length() <= 4) {
+                    String value = charSequence.toString().replaceAll("\\s+","");
+                    if (value.length() == 0) {
                         Currency.amount = 0;
 
-                        notifyExceptFocusedPosition();
+
+                       notifyDataSetChanged();
+
+
 
                     } else {
-                        String s = charSequence.toString();
-                        String s2 = s.replace(",", ".");
-                        float num = Float.valueOf(s2.length() > 0 ? s2 : "0");
+                        float num;
+                        String s2 = value.replace(",", ".");
+                        try {
+                            num = Float.valueOf(s2);
 
-
-
+                        } catch (Exception e) {
+                            num = 0;
+                        }
 
                         if (Currency.amount != num && editText.isFocused() && getAdapterPosition() == mFocusedPosition && currency.getCurrencyCode().equals(Currency.base)) {
                             Currency.amount = num;
 
-                           notifyExceptFocusedPosition();
+                            notifyExceptFocusedPosition();
 
 
                         }
+
+
+
+
                     }
 
 
