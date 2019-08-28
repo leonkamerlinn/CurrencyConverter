@@ -1,0 +1,111 @@
+package com.tenseconds.currencyconverter.api;
+
+import com.tenseconds.currencyconverter.api.curencies.AUD;
+import com.tenseconds.currencyconverter.api.curencies.BGN;
+import com.tenseconds.currencyconverter.api.curencies.BRL;
+import com.tenseconds.currencyconverter.api.curencies.CAD;
+import com.tenseconds.currencyconverter.api.curencies.CHF;
+import com.tenseconds.currencyconverter.api.curencies.CNY;
+import com.tenseconds.currencyconverter.api.curencies.CZK;
+import com.tenseconds.currencyconverter.api.curencies.DKK;
+import com.tenseconds.currencyconverter.api.curencies.EUR;
+import com.tenseconds.currencyconverter.api.curencies.GBP;
+import com.tenseconds.currencyconverter.api.curencies.HKD;
+import com.tenseconds.currencyconverter.api.curencies.HRK;
+import com.tenseconds.currencyconverter.api.curencies.HUF;
+import com.tenseconds.currencyconverter.api.curencies.IDR;
+import com.tenseconds.currencyconverter.api.curencies.ILS;
+import com.tenseconds.currencyconverter.api.curencies.INR;
+import com.tenseconds.currencyconverter.api.curencies.ISK;
+import com.tenseconds.currencyconverter.api.curencies.JPY;
+import com.tenseconds.currencyconverter.api.curencies.KRW;
+import com.tenseconds.currencyconverter.api.curencies.MXN;
+import com.tenseconds.currencyconverter.api.curencies.MYR;
+import com.tenseconds.currencyconverter.api.curencies.NOK;
+import com.tenseconds.currencyconverter.api.curencies.NZD;
+import com.tenseconds.currencyconverter.api.curencies.PHP;
+import com.tenseconds.currencyconverter.api.curencies.PLN;
+import com.tenseconds.currencyconverter.api.curencies.RON;
+import com.tenseconds.currencyconverter.api.curencies.RUB;
+import com.tenseconds.currencyconverter.api.curencies.SEK;
+import com.tenseconds.currencyconverter.api.curencies.SGD;
+import com.tenseconds.currencyconverter.api.curencies.THB;
+import com.tenseconds.currencyconverter.api.curencies.TRY;
+import com.tenseconds.currencyconverter.api.curencies.USD;
+import com.tenseconds.currencyconverter.api.curencies.ZAR;
+
+public class CurrencyFactory {
+    public static Currency getCurrency(String currency) {
+        switch (currency) {
+            case Currency.EUR:
+                return EUR.getInstance();
+            case Currency.AUD:
+                return AUD.getInstance();
+            case Currency.BGN:
+                return BGN.getInstance();
+            case Currency.BRL:
+                return BRL.getInstance();
+            case Currency.CAD:
+                return CAD.getInstance();
+            case Currency.CHF:
+                return CHF.getInstance();
+            case Currency.CNY:
+                return CNY.getInstance();
+            case Currency.CZK:
+                return CZK.getInstance();
+            case Currency.DKK:
+                return DKK.getInstance();
+            case Currency.GBP:
+                return GBP.getInstance();
+            case Currency.HKD:
+                return HKD.getInstance();
+            case Currency.HRK:
+                return HRK.getInstance();
+            case Currency.HUF:
+                return HUF.getInstance();
+            case Currency.IDR:
+                return IDR.getInstance();
+            case Currency.ILS:
+                return ILS.getInstance();
+            case Currency.INR:
+                return INR.getInstance();
+            case Currency.ISK:
+                return ISK.getInstance();
+            case Currency.JPY:
+                return JPY.getInstance();
+            case Currency.KRW:
+                return KRW.getInstance();
+            case Currency.MXN:
+                return MXN.getInstance();
+            case Currency.MYR:
+                return MYR.getInstance();
+            case Currency.NOK:
+                return NOK.getInstance();
+            case Currency.NZD:
+                return NZD.getInstance();
+            case Currency.PHP:
+                return PHP.getInstance();
+            case Currency.PLN:
+                return PLN.getInstance();
+            case Currency.RON:
+                return RON.getInstance();
+            case Currency.RUB:
+                return RUB.getInstance();
+            case Currency.SEK:
+                return SEK.getInstance();
+            case Currency.SGD:
+                return SGD.getInstance();
+            case Currency.THB:
+                return THB.getInstance();
+            case Currency.TRY:
+                return TRY.getInstance();
+            case Currency.USD:
+                return USD.getInstance();
+            case Currency.ZAR:
+                return ZAR.getInstance();
+        }
+        return null;
+    }
+
+
+}
