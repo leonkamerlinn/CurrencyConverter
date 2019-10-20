@@ -6,7 +6,8 @@ import android.content.Context;
 import com.github.pwittchen.reactivenetwork.library.rx2.Connectivity;
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.tenseconds.currencyconverter.api.API;
-import com.tenseconds.currencyconverter.db.CurrencyDatabase;
+
+import javax.inject.Singleton;
 
 import dagger.Binds;
 import dagger.Module;
@@ -30,25 +31,25 @@ public abstract class ApplicationBindingModule {
         return ApplicationBindingModule.class.getSimpleName();
     }
 
-    @Provides
-    static CurrencyDatabase provideDatabase(Application application) {
-        return CurrencyDatabase.getInstance(application.getApplicationContext());
-    }
+
 
 
     @Provides
+    @Singleton
     static OkHttpClient provideOkHttpClient() {
         return new OkHttpClient.Builder()
                 .build();
     }
 
     @Provides
+    @Singleton
     static Observable<Connectivity> provideNetworkObservable(Context context) {
         return ReactiveNetwork
                 .observeNetworkConnectivity(context);
     }
 
     @Provides
+    @Singleton
     static Retrofit provideRetrofit(OkHttpClient okHttpClient) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API.BASE_URL)
@@ -63,7 +64,8 @@ public abstract class ApplicationBindingModule {
     }
 
     @Provides
-    static API.Repository provideMovieService(Retrofit retrofit) {
+    @Singleton
+    static API.Repository provideService(Retrofit retrofit) {
         return retrofit.create(API.Repository.class);
     }
 

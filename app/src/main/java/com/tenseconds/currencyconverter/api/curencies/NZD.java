@@ -3,26 +3,17 @@ package com.tenseconds.currencyconverter.api.curencies;
 import com.tenseconds.currencyconverter.R;
 import com.tenseconds.currencyconverter.api.Currency;
 import com.tenseconds.currencyconverter.api.CurrencyRates;
+import com.tenseconds.currencyconverter.api.DataSource;
 
 public class NZD extends Currency {
-    private static NZD INSTANCE;
-    public NZD() {
-
+    public NZD(DataSource data, float amount) {
+        super(data, amount);
     }
-
-    public static synchronized NZD getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new NZD();
-        }
-
-        return INSTANCE;
-    }
-
 
 
     @Override
     public float getRate() {
-        return Currency.rates.NZD;
+        return rates.getNZD();
     }
 
     @Override
@@ -44,41 +35,40 @@ public class NZD extends Currency {
 
     @Override
     public CurrencyRates getRates() {
-        Currency.rates.EUR = Currency.rates.EUR / Currency.rates.NZD;
-        Currency.rates.AUD = Currency.rates.AUD / Currency.rates.NZD;
-        Currency.rates.BGN = Currency.rates.BGN / Currency.rates.NZD;
-        Currency.rates.BRL = Currency.rates.BRL / Currency.rates.NZD;
-        Currency.rates.CAD = Currency.rates.CAD / Currency.rates.NZD;
-        Currency.rates.CHF = Currency.rates.CHF / Currency.rates.NZD;
-        Currency.rates.CNY = Currency.rates.CNY / Currency.rates.NZD;
-        Currency.rates.CZK = Currency.rates.CZK / Currency.rates.NZD;
-        Currency.rates.DKK = Currency.rates.DKK / Currency.rates.NZD;
-        Currency.rates.GBP = Currency.rates.GBP / Currency.rates.NZD;
-        Currency.rates.HKD = Currency.rates.HKD / Currency.rates.NZD;
-        Currency.rates.HRK = Currency.rates.HRK / Currency.rates.NZD;
-        Currency.rates.HUF = Currency.rates.HUF / Currency.rates.NZD;
-        Currency.rates.IDR = Currency.rates.IDR / Currency.rates.NZD;
-        Currency.rates.ILS = Currency.rates.ILS / Currency.rates.NZD;
-        Currency.rates.INR = Currency.rates.INR / Currency.rates.NZD;
-        Currency.rates.ISK = Currency.rates.ISK / Currency.rates.NZD;
-        Currency.rates.JPY = Currency.rates.JPY / Currency.rates.NZD;
-        Currency.rates.KRW = Currency.rates.KRW / Currency.rates.NZD;
-        Currency.rates.MXN = Currency.rates.MXN / Currency.rates.NZD;
-        Currency.rates.MYR = Currency.rates.MYR / Currency.rates.NZD;
-        Currency.rates.NOK = Currency.rates.NOK / Currency.rates.NZD;
-        Currency.rates.PHP = Currency.rates.PHP / Currency.rates.NZD;
-        Currency.rates.PLN = Currency.rates.PLN / Currency.rates.NZD;
-        Currency.rates.RON = Currency.rates.RON / Currency.rates.NZD;
-        Currency.rates.RUB = Currency.rates.RUB / Currency.rates.NZD;
-        Currency.rates.SEK = Currency.rates.SEK / Currency.rates.NZD;
-        Currency.rates.SGD = Currency.rates.SGD / Currency.rates.NZD;
-        Currency.rates.THB = Currency.rates.THB / Currency.rates.NZD;
-        Currency.rates.TRY = Currency.rates.TRY / Currency.rates.NZD;
-        Currency.rates.USD = Currency.rates.USD / Currency.rates.NZD;
-        Currency.rates.ZAR = Currency.rates.ZAR / Currency.rates.NZD;
-        Currency.rates.NZD = 1;
-        return Currency.rates;
+        rates.setAUD(rates.getAUD() / rates.getNZD());
+        rates.setBGN(rates.getBGN() / rates.getNZD());
+        rates.setEUR(rates.getEUR() / rates.getNZD());
+        rates.setBRL(rates.getBRL() / rates.getNZD());
+        rates.setCAD(rates.getCAD() / rates.getNZD());
+        rates.setCHF(rates.getCHF() / rates.getNZD());
+        rates.setCNY(rates.getCNY() / rates.getNZD());
+        rates.setCZK(rates.getCZK() / rates.getNZD());
+        rates.setDKK(rates.getDKK() / rates.getNZD());
+        rates.setGBP(rates.getGBP() / rates.getNZD());
+        rates.setHKD(rates.getHKD() / rates.getNZD());
+        rates.setHRK(rates.getHRK() / rates.getNZD());
+        rates.setHUF(rates.getHUF() / rates.getNZD());
+        rates.setIDR(rates.getIDR() / rates.getNZD());
+        rates.setILS(rates.getILS() / rates.getNZD());
+        rates.setINR(rates.getINR() / rates.getNZD());
+        rates.setISK(rates.getISK() / rates.getNZD());
+        rates.setJPY(rates.getJPY() / rates.getNZD());
+        rates.setKRW(rates.getKRW() / rates.getNZD());
+        rates.setMXN(rates.getMXN() / rates.getNZD());
+        rates.setMYR(rates.getMYR() / rates.getNZD());
+        rates.setNOK(rates.getNOK() / rates.getNZD());
+        rates.setPHP(rates.getPHP() / rates.getNZD());
+        rates.setPLN(rates.getPLN() / rates.getNZD());
+        rates.setRON(rates.getRON() / rates.getNZD());
+        rates.setRUB(rates.getRUB() / rates.getNZD());
+        rates.setSEK(rates.getSEK() / rates.getNZD());
+        rates.setSGD(rates.getSGD() / rates.getNZD());
+        rates.setTHB(rates.getTHB() / rates.getNZD());
+        rates.setTRY(rates.getTRY() / rates.getNZD());
+        rates.setUSD(rates.getUSD() / rates.getNZD());
+        rates.setZAR(rates.getZAR() / rates.getNZD());
+        rates.setNZD(1);
+        return rates;
     }
-
 
 }

@@ -28,7 +28,6 @@
         </activity>
 
 
-        <service android:name=".db.CurrencyService" />
     </application>
 
 </manifest>

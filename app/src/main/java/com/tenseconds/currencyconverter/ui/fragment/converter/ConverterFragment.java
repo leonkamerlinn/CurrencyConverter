@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tenseconds.currencyconverter.R;
+import com.tenseconds.currencyconverter.api.Currency;
 import com.tenseconds.currencyconverter.databinding.FragmentConverterBinding;
 import com.tenseconds.currencyconverter.helper.CurrencyDiffUtilCallback;
 import com.tenseconds.currencyconverter.ui.activity.main.MainActivity;
 
 import java.util.ArrayList;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import java.util.List;
 
 
 public class ConverterFragment extends Fragment {
@@ -29,7 +29,6 @@ public class ConverterFragment extends Fragment {
 
 
     public ConverterFragment() {
-        // Required empty public constructor
 
     }
 
@@ -57,32 +56,24 @@ public class ConverterFragment extends Fragment {
         adapter = new ConverterAdapter(getContext());
         binding.recyclerView.setAdapter(adapter);
 
-        mainActivity.getViewModel().getConverterCurrencies().observe(getViewLifecycleOwner(), iCurrencies -> {
-            CurrencyDiffUtilCallback diffUtil = new CurrencyDiffUtilCallback(iCurrencies, new ArrayList<>(adapter.getAll()));
-            adapter.update(iCurrencies, null);
+        mainActivity.getViewModel().getCurrencyList().observe(getViewLifecycleOwner(), newList -> {
+            List<Currency> oldList = new ArrayList<>(adapter.getAll());
+
+            if (oldList.size() == 0) {
+                adapter.addAll(newList);
+            } else {
+                CurrencyDiffUtilCallback diffUtil = new CurrencyDiffUtilCallback(newList, oldList);
+                adapter.update(newList, diffUtil);
+            }
+
 
         });
 
 
-        adapter.getCurrencyObservable().observeOn(AndroidSchedulers.mainThread()).subscribe(currencyViewHolder -> {
-           mainActivity.getViewModel().setCurrencyCode(currencyViewHolder.getCurrencyCode());
-        });
 
-        mainActivity.getViewModel().getChangeObservable().subscribe(adapter);
-
-
-        swapCurrencyOnClick(adapter);
 
 
         return binding.getRoot();
-    }
-
-    @SuppressLint("CheckResult")
-    private void swapCurrencyOnClick(ConverterAdapter adapter) {
-        adapter.getPositionObservable().subscribe(index -> {
-            mainActivity.getViewModel().swap(index);
-
-        });
     }
 
 

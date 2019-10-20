@@ -10,6 +10,8 @@ import com.tenseconds.currencyconverter.R;
 import com.tenseconds.currencyconverter.databinding.ActivityMainBinding;
 import com.tenseconds.currencyconverter.di.scope.ActivityScoped;
 
+import javax.inject.Singleton;
+
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;

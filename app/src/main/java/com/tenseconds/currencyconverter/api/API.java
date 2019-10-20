@@ -15,7 +15,7 @@ public class API {
 
     public interface Repository {
         @GET(API)
-        Observable<Data> getRates(@Query(BASE_CURRENCY) String baseCurrency);
+        Observable<DataSource> getRates(@Query(BASE_CURRENCY) String baseCurrency);
     }
 
 }

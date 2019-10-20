@@ -3,16 +3,14 @@ package com.tenseconds.currencyconverter.ui.fragment.rates;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
+import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.textview.MaterialTextView;
 import com.tenseconds.currencyconverter.R;
 import com.tenseconds.currencyconverter.api.Currency;
+import com.tenseconds.currencyconverter.databinding.ItemCurrencyRatesBinding;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,23 +25,17 @@ public class RatesAdapter extends MjolnirRecyclerAdapter<Currency> {
 
     @Override
     protected MjolnirViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
-        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_currency_rates, parent, false);
-        return new CurrencyViewHolder(rootView);
+        ItemCurrencyRatesBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_currency_rates, parent, false);
+        return new CurrencyViewHolder(binding);
     }
 
 
     public class CurrencyViewHolder extends MjolnirViewHolder<Currency> {
-        private final AppCompatImageView flag;
-        private final AppCompatTextView currencyCode;
-        private final AppCompatTextView currencyName;
-        private final MaterialTextView textView;
+        private final ItemCurrencyRatesBinding binding;
 
-        public CurrencyViewHolder(View itemView) {
-            super(itemView);
-            flag = itemView.findViewById(R.id.flag);
-            currencyCode = itemView.findViewById(R.id.currency_code);
-            currencyName = itemView.findViewById(R.id.currency_name);
-            textView = itemView.findViewById(R.id.textView);
+        public CurrencyViewHolder(ItemCurrencyRatesBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
 
         }
 
@@ -51,17 +43,14 @@ public class RatesAdapter extends MjolnirRecyclerAdapter<Currency> {
         @Override
         protected void bind(Currency currency, int position, List<Object> payloads) {
             Glide
-                    .with(flag.getContext())
+                    .with(binding.flag.getContext())
                     .load(currency.getFlagRes())
-                    .into(flag);
-            currencyCode.setText(currency.getCurrencyCode());
-            currencyName.setText(getContext().getString(currency.getCurrencyNameRes()));
-            textView.setText(currency.getRateFormat());
-
+                    .into(binding.flag);
+            binding.currencyCode.setText(currency.getCurrencyCode());
+            binding.currencyName.setText(getContext().getString(currency.getCurrencyNameRes()));
+            binding.textView.setText(currency.getRateFormat());
 
 
         }
-
-
     }
 }

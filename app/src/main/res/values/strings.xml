@@ -4,8 +4,6 @@
     <string name="converter">Converter</string>
     <string name="rates_and_conversions"><![CDATA[Rates & conversions]]></string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="usd">US Dollar</string>
     <string name="aud">Australian Dollar</string>
     <string name="bgn">Bulgarian Lev</string>

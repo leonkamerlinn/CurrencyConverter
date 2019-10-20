@@ -3,26 +3,18 @@ package com.tenseconds.currencyconverter.api.curencies;
 import com.tenseconds.currencyconverter.R;
 import com.tenseconds.currencyconverter.api.Currency;
 import com.tenseconds.currencyconverter.api.CurrencyRates;
+import com.tenseconds.currencyconverter.api.DataSource;
 
 public class SEK extends Currency {
-    private static SEK INSTANCE;
-    public SEK() {
-
-    }
-
-    public static synchronized SEK getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new SEK();
-        }
-
-        return INSTANCE;
+    public SEK(DataSource data, float amount) {
+        super(data, amount);
     }
 
 
 
     @Override
     public float getRate() {
-        return Currency.rates.SEK;
+        return rates.getSEK();
     }
 
     @Override
@@ -44,40 +36,40 @@ public class SEK extends Currency {
 
     @Override
     public CurrencyRates getRates() {
-        Currency.rates.EUR = Currency.rates.EUR / Currency.rates.SEK;
-        Currency.rates.AUD = Currency.rates.AUD / Currency.rates.SEK;
-        Currency.rates.BGN = Currency.rates.BGN / Currency.rates.SEK;
-        Currency.rates.BRL = Currency.rates.BRL / Currency.rates.SEK;
-        Currency.rates.CAD = Currency.rates.CAD / Currency.rates.SEK;
-        Currency.rates.CHF = Currency.rates.CHF / Currency.rates.SEK;
-        Currency.rates.CNY = Currency.rates.CNY / Currency.rates.SEK;
-        Currency.rates.CZK = Currency.rates.CZK / Currency.rates.SEK;
-        Currency.rates.DKK = Currency.rates.DKK / Currency.rates.SEK;
-        Currency.rates.GBP = Currency.rates.GBP / Currency.rates.SEK;
-        Currency.rates.HKD = Currency.rates.HKD / Currency.rates.SEK;
-        Currency.rates.HRK = Currency.rates.HRK / Currency.rates.SEK;
-        Currency.rates.HUF = Currency.rates.HUF / Currency.rates.SEK;
-        Currency.rates.IDR = Currency.rates.IDR / Currency.rates.SEK;
-        Currency.rates.ILS = Currency.rates.ILS / Currency.rates.SEK;
-        Currency.rates.INR = Currency.rates.INR / Currency.rates.SEK;
-        Currency.rates.ISK = Currency.rates.ISK / Currency.rates.SEK;
-        Currency.rates.JPY = Currency.rates.JPY / Currency.rates.SEK;
-        Currency.rates.KRW = Currency.rates.KRW / Currency.rates.SEK;
-        Currency.rates.MXN = Currency.rates.MXN / Currency.rates.SEK;
-        Currency.rates.MYR = Currency.rates.MYR / Currency.rates.SEK;
-        Currency.rates.NOK = Currency.rates.NOK / Currency.rates.SEK;
-        Currency.rates.NZD = Currency.rates.NZD / Currency.rates.SEK;
-        Currency.rates.PHP = Currency.rates.PHP / Currency.rates.SEK;
-        Currency.rates.PLN = Currency.rates.PLN / Currency.rates.SEK;
-        Currency.rates.RON = Currency.rates.RON / Currency.rates.SEK;
-        Currency.rates.RUB = Currency.rates.RUB / Currency.rates.SEK;
-        Currency.rates.SGD = Currency.rates.SGD / Currency.rates.SEK;
-        Currency.rates.THB = Currency.rates.THB / Currency.rates.SEK;
-        Currency.rates.TRY = Currency.rates.TRY / Currency.rates.SEK;
-        Currency.rates.USD = Currency.rates.USD / Currency.rates.SEK;
-        Currency.rates.ZAR = Currency.rates.ZAR / Currency.rates.SEK;
-        Currency.rates.SEK = 1;
-        return Currency.rates;
+        rates.setAUD(rates.getAUD() / rates.getSEK());
+        rates.setBGN(rates.getBGN() / rates.getSEK());
+        rates.setEUR(rates.getEUR() / rates.getSEK());
+        rates.setBRL(rates.getBRL() / rates.getSEK());
+        rates.setCAD(rates.getCAD() / rates.getSEK());
+        rates.setCHF(rates.getCHF() / rates.getSEK());
+        rates.setCNY(rates.getCNY() / rates.getSEK());
+        rates.setCZK(rates.getCZK() / rates.getSEK());
+        rates.setDKK(rates.getDKK() / rates.getSEK());
+        rates.setGBP(rates.getGBP() / rates.getSEK());
+        rates.setHKD(rates.getHKD() / rates.getSEK());
+        rates.setHRK(rates.getHRK() / rates.getSEK());
+        rates.setHUF(rates.getHUF() / rates.getSEK());
+        rates.setIDR(rates.getIDR() / rates.getSEK());
+        rates.setILS(rates.getILS() / rates.getSEK());
+        rates.setINR(rates.getINR() / rates.getSEK());
+        rates.setISK(rates.getISK() / rates.getSEK());
+        rates.setJPY(rates.getJPY() / rates.getSEK());
+        rates.setKRW(rates.getKRW() / rates.getSEK());
+        rates.setMXN(rates.getMXN() / rates.getSEK());
+        rates.setMYR(rates.getMYR() / rates.getSEK());
+        rates.setNOK(rates.getNOK() / rates.getSEK());
+        rates.setNZD(rates.getNZD() / rates.getSEK());
+        rates.setPHP(rates.getPHP() / rates.getSEK());
+        rates.setPLN(rates.getPLN() / rates.getSEK());
+        rates.setRON(rates.getRON() / rates.getSEK());
+        rates.setRUB(rates.getRUB() / rates.getSEK());
+        rates.setSGD(rates.getSGD() / rates.getSEK());
+        rates.setTHB(rates.getTHB() / rates.getSEK());
+        rates.setTRY(rates.getTRY() / rates.getSEK());
+        rates.setUSD(rates.getUSD() / rates.getSEK());
+        rates.setZAR(rates.getZAR() / rates.getSEK());
+        rates.setSEK(1);
+        return rates;
     }
 
 

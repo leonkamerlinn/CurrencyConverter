@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.tenseconds.currencyconverter.data.Repository;
+import com.tenseconds.currencyconverter.data.DataRepository;
 
 import javax.inject.Inject;
 
@@ -13,10 +13,10 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
 
 
     private final Application mApplication;
-    private final Repository mRepository;
+    private final DataRepository mRepository;
 
     @Inject
-    public MainViewModelFactory(Application application, Repository repository) {
+    public MainViewModelFactory(Application application, DataRepository repository) {
        mApplication = application;
        mRepository = repository;
     }

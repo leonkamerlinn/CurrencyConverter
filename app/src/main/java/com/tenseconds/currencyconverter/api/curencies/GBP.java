@@ -3,25 +3,17 @@ package com.tenseconds.currencyconverter.api.curencies;
 import com.tenseconds.currencyconverter.R;
 import com.tenseconds.currencyconverter.api.Currency;
 import com.tenseconds.currencyconverter.api.CurrencyRates;
+import com.tenseconds.currencyconverter.api.DataSource;
 
 public class GBP extends Currency {
-    private static GBP INSTANCE;
-    public GBP() {
 
+    public GBP(DataSource data, float amount) {
+        super(data, amount);
     }
-
-    public static synchronized GBP getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new GBP();
-        }
-
-        return INSTANCE;
-    }
-
 
     @Override
     public float getRate() {
-        return Currency.rates.GBP;
+        return rates.getGBP();
     }
 
     @Override
@@ -43,41 +35,40 @@ public class GBP extends Currency {
 
     @Override
     public CurrencyRates getRates() {
-        Currency.rates.EUR = Currency.rates.EUR / Currency.rates.GBP;
-        Currency.rates.AUD = Currency.rates.AUD / Currency.rates.GBP;
-        Currency.rates.BGN = Currency.rates.BGN / Currency.rates.GBP;
-        Currency.rates.BRL = Currency.rates.BRL / Currency.rates.GBP;
-        Currency.rates.CAD = Currency.rates.CAD / Currency.rates.GBP;
-        Currency.rates.CHF = Currency.rates.CHF / Currency.rates.GBP;
-        Currency.rates.CNY = Currency.rates.CNY / Currency.rates.GBP;
-        Currency.rates.CZK = Currency.rates.CZK / Currency.rates.GBP;
-        Currency.rates.DKK = Currency.rates.DKK / Currency.rates.GBP;
-        Currency.rates.HKD = Currency.rates.HKD / Currency.rates.GBP;
-        Currency.rates.HRK = Currency.rates.HRK / Currency.rates.GBP;
-        Currency.rates.HUF = Currency.rates.HUF / Currency.rates.GBP;
-        Currency.rates.IDR = Currency.rates.IDR / Currency.rates.GBP;
-        Currency.rates.ILS = Currency.rates.ILS / Currency.rates.GBP;
-        Currency.rates.INR = Currency.rates.INR / Currency.rates.GBP;
-        Currency.rates.ISK = Currency.rates.ISK / Currency.rates.GBP;
-        Currency.rates.JPY = Currency.rates.JPY / Currency.rates.GBP;
-        Currency.rates.KRW = Currency.rates.KRW / Currency.rates.GBP;
-        Currency.rates.MXN = Currency.rates.MXN / Currency.rates.GBP;
-        Currency.rates.MYR = Currency.rates.MYR / Currency.rates.GBP;
-        Currency.rates.NOK = Currency.rates.NOK / Currency.rates.GBP;
-        Currency.rates.NZD = Currency.rates.NZD / Currency.rates.GBP;
-        Currency.rates.PHP = Currency.rates.PHP / Currency.rates.GBP;
-        Currency.rates.PLN = Currency.rates.PLN / Currency.rates.GBP;
-        Currency.rates.RON = Currency.rates.RON / Currency.rates.GBP;
-        Currency.rates.RUB = Currency.rates.RUB / Currency.rates.GBP;
-        Currency.rates.SEK = Currency.rates.SEK / Currency.rates.GBP;
-        Currency.rates.SGD = Currency.rates.SGD / Currency.rates.GBP;
-        Currency.rates.THB = Currency.rates.THB / Currency.rates.GBP;
-        Currency.rates.TRY = Currency.rates.TRY / Currency.rates.GBP;
-        Currency.rates.USD = Currency.rates.USD / Currency.rates.GBP;
-        Currency.rates.ZAR = Currency.rates.ZAR / Currency.rates.GBP;
-        Currency.rates.GBP = 1;
-        return Currency.rates;
+        rates.setAUD(rates.getAUD() / rates.getGBP());
+        rates.setBGN(rates.getBGN() / rates.getGBP());
+        rates.setEUR(rates.getEUR() / rates.getGBP());
+        rates.setBRL(rates.getBRL() / rates.getGBP());
+        rates.setCAD(rates.getCAD() / rates.getGBP());
+        rates.setCHF(rates.getCHF() / rates.getGBP());
+        rates.setCNY(rates.getCNY() / rates.getGBP());
+        rates.setCZK(rates.getCZK() / rates.getGBP());
+        rates.setDKK(rates.getDKK() / rates.getGBP());
+        rates.setHKD(rates.getHKD() / rates.getGBP());
+        rates.setHRK(rates.getHRK() / rates.getGBP());
+        rates.setHUF(rates.getHUF() / rates.getGBP());
+        rates.setIDR(rates.getIDR() / rates.getGBP());
+        rates.setILS(rates.getILS() / rates.getGBP());
+        rates.setINR(rates.getINR() / rates.getGBP());
+        rates.setISK(rates.getISK() / rates.getGBP());
+        rates.setJPY(rates.getJPY() / rates.getGBP());
+        rates.setKRW(rates.getKRW() / rates.getGBP());
+        rates.setMXN(rates.getMXN() / rates.getGBP());
+        rates.setMYR(rates.getMYR() / rates.getGBP());
+        rates.setNOK(rates.getNOK() / rates.getGBP());
+        rates.setNZD(rates.getNZD() / rates.getGBP());
+        rates.setPHP(rates.getPHP() / rates.getGBP());
+        rates.setPLN(rates.getPLN() / rates.getGBP());
+        rates.setRON(rates.getRON() / rates.getGBP());
+        rates.setRUB(rates.getRUB() / rates.getGBP());
+        rates.setSEK(rates.getSEK() / rates.getGBP());
+        rates.setSGD(rates.getSGD() / rates.getGBP());
+        rates.setTHB(rates.getTHB() / rates.getGBP());
+        rates.setTRY(rates.getTRY() / rates.getGBP());
+        rates.setUSD(rates.getUSD() / rates.getGBP());
+        rates.setZAR(rates.getZAR() / rates.getGBP());
+        rates.setGBP(1);
+        return rates;
     }
-
 
 }

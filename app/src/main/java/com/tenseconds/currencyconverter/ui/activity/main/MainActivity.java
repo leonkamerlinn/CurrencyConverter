@@ -3,23 +3,22 @@ package com.tenseconds.currencyconverter.ui.activity.main;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.tenseconds.currencyconverter.R;
+import com.tenseconds.currencyconverter.data.DataRepository;
 import com.tenseconds.currencyconverter.databinding.ActivityMainBinding;
+import com.tenseconds.currencyconverter.helper.ViewPagerAdapterHelper;
+import com.tenseconds.currencyconverter.ui.fragment.converter.ConverterAdapter;
 import com.tenseconds.currencyconverter.ui.fragment.converter.ConverterFragment;
 import com.tenseconds.currencyconverter.ui.fragment.rates.RatesFragment;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
@@ -34,6 +33,9 @@ public class MainActivity extends DaggerAppCompatActivity {
     @Inject
     ActivityMainBinding binding;
 
+    @Inject
+    DataRepository repository;
+
 
 
     @SuppressLint("CheckResult")
@@ -42,30 +44,51 @@ public class MainActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-
-        setSupportActionBar(binding.toolbar);
-
-        // Get the ActionBar here to configure the way it behaves.
-        final ActionBar ab = getSupportActionBar();
-        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
-        //ab.setDisplayShowHomeEnabled(true); // show or hide the default home button
-        ab.setDisplayHomeAsUpEnabled(false);
-        ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
-        ab.setDisplayShowTitleEnabled(false); // disable the default ti
+        toolbarSetup();
         setupViewPager(binding.viewPagerBottom, binding.tabs);
+        showSnackBarIfNoInternet();
+    }
+
+    private void toolbarSetup() {
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
+        getSupportActionBar().setDisplayShowTitleEnabled(false); // disable the default ti
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ConverterAdapter.onChangeActionEvent event) {
+        if (event.getAction() == ConverterAdapter.Action.ITEM_CHANGE_FOCUS) {
+            repository.swap(event.getCurrencyItem());
+        } else {
+            repository.changeAmount(event.getCurrencyItem());
+        }
+
+    }
+
+
+    private void showSnackBarIfNoInternet() {
+        Snackbar snackbar = Snackbar
+                .make(binding.getRoot(), "No internet connection", Snackbar.LENGTH_INDEFINITE);
+
+        viewModel.showSnackBar().observe(this, show -> {
+            if (show && !snackbar.isShown()) {
+                snackbar.show();
+            } else if (!show && snackbar.isShown()) {
+                snackbar.dismiss();
+            }
+
+        });
 
     }
 
 
 
-
     private void setupViewPager(ViewPager2 viewPager, TabLayout tabLayout) {
-
-
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-
-        adapter.fragmentList.add(viewModel.getRatesFragment());
-        adapter.fragmentList.add(viewModel.getConverterFragment());
+        ViewPagerAdapterHelper adapter = new ViewPagerAdapterHelper(getSupportFragmentManager(), getLifecycle());
+        adapter.fragmentList.add(RatesFragment.newInstance());
+        adapter.fragmentList.add(ConverterFragment.newInstance());
 
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         viewPager.setAdapter(adapter);
@@ -92,26 +115,17 @@ public class MainActivity extends DaggerAppCompatActivity {
         return viewModel;
     }
 
-    class ViewPagerAdapter extends FragmentStateAdapter {
 
 
-        private final List<Fragment> fragmentList = new ArrayList<>();
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
-        public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-            super(fragmentManager, lifecycle);
-        }
-
-        @NonNull
-        @Override
-        public Fragment createFragment(int position) {
-            return fragmentList.get(position);
-        }
-
-        @Override
-        public int getItemCount() {
-            return fragmentList.size();
-        }
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

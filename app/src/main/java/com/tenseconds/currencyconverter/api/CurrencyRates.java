@@ -3,96 +3,49 @@ package com.tenseconds.currencyconverter.api;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.util.Objects;
 
 
-@Entity(
-        tableName = "currency_table"
-)
-public class CurrencyRates implements Parcelable {
+public class CurrencyRates {
     public CurrencyRates() {
 
     }
-    @PrimaryKey(autoGenerate = true)
-    private long ID = 1;
 
-    @NonNull
-    public float EUR = 1;
-    @NonNull
-    public float AUD;
-    @NonNull
-    public float BGN;
-    @NonNull
-    public float BRL;
-    @NonNull
-    public float CAD;
-    @NonNull
-    public float CHF;
-    @NonNull
-    public float CNY;
-    @NonNull
-    public float CZK;
-    @NonNull
-    public float DKK;
-    @NonNull
-    public float GBP;
-    @NonNull
-    public float HKD;
-    @NonNull
-    public float HRK;
-    @NonNull
-    public float HUF;
-    @NonNull
-    public float IDR;
-    @NonNull
-    public float ILS;
-    @NonNull
-    public float INR;
-    @NonNull
-    public float ISK;
-    @NonNull
-    public float JPY;
-    @NonNull
-    public float KRW;
-    @NonNull
-    public float MXN;
-    @NonNull
-    public float MYR;
-    @NonNull
-    public float NOK;
-    @NonNull
-    public float NZD;
-    @NonNull
-    public float PHP;
-    @NonNull
-    public float PLN;
-    @NonNull
-    public float RON;
-    @NonNull
-    public float RUB;
-    @NonNull
-    public float SEK;
-    @NonNull
-    public float SGD;
-    @NonNull
-    public float THB;
-    @NonNull
-    public float TRY;
-    @NonNull
-    public float USD;
-    @NonNull
-    public float ZAR;
+    private float EUR = 1;
+    private float AUD = 1;
+    private float BGN = 1;
+    private float BRL = 1;
+    private float CAD = 1;
+    private float CHF = 1;
+    private float CNY = 1;
+    private float CZK = 1;
+    private float DKK = 1;
+    private float GBP = 1;
+    private float HKD = 1;
+    private float HRK = 1;
+    private float HUF = 1;
+    private float IDR = 1;
+    private float ILS = 1;
+    private float INR = 1;
+    private float ISK = 1;
+    private float JPY = 1;
+    private float KRW = 1;
+    private float MXN = 1;
+    private float MYR = 1;
+    private float NOK = 1;
+    private float NZD = 1;
+    private float PHP = 1;
+    private float PLN = 1;
+    private float RON = 1;
+    private float RUB = 1;
+    private float SEK = 1;
+    private float SGD = 1;
+    private float THB = 1;
+    private float TRY = 1;
+    private float USD = 1;
+    private float ZAR = 1;
 
 
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
-    }
 
     public float getEUR() {
         return EUR;
@@ -358,98 +311,50 @@ public class CurrencyRates implements Parcelable {
         this.ZAR = ZAR;
     }
 
-    protected CurrencyRates(Parcel in) {
-        ID = in.readLong();
-        EUR = in.readFloat();
-        AUD = in.readFloat();
-        BGN = in.readFloat();
-        BRL = in.readFloat();
-        CAD = in.readFloat();
-        CHF = in.readFloat();
-        CNY = in.readFloat();
-        CZK = in.readFloat();
-        DKK = in.readFloat();
-        GBP = in.readFloat();
-        HKD = in.readFloat();
-        HRK = in.readFloat();
-        HUF = in.readFloat();
-        IDR = in.readFloat();
-        ILS = in.readFloat();
-        INR = in.readFloat();
-        ISK = in.readFloat();
-        JPY = in.readFloat();
-        KRW = in.readFloat();
-        MXN = in.readFloat();
-        MYR = in.readFloat();
-        NOK = in.readFloat();
-        NZD = in.readFloat();
-        PHP = in.readFloat();
-        PLN = in.readFloat();
-        RON = in.readFloat();
-        RUB = in.readFloat();
-        SEK = in.readFloat();
-        SGD = in.readFloat();
-        THB = in.readFloat();
-        TRY = in.readFloat();
-        USD = in.readFloat();
-        ZAR = in.readFloat();
-    }
 
-    public static final Creator<CurrencyRates> CREATOR = new Creator<CurrencyRates>() {
-        @Override
-        public CurrencyRates createFromParcel(Parcel in) {
-            return new CurrencyRates(in);
-        }
-
-        @Override
-        public CurrencyRates[] newArray(int size) {
-            return new CurrencyRates[size];
-        }
-    };
 
     @Override
-    public int describeContents() {
-        return 0;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CurrencyRates that = (CurrencyRates) o;
+        return Float.compare(that.EUR, EUR) == 0 &&
+                Float.compare(that.AUD, AUD) == 0 &&
+                Float.compare(that.BGN, BGN) == 0 &&
+                Float.compare(that.BRL, BRL) == 0 &&
+                Float.compare(that.CAD, CAD) == 0 &&
+                Float.compare(that.CHF, CHF) == 0 &&
+                Float.compare(that.CNY, CNY) == 0 &&
+                Float.compare(that.CZK, CZK) == 0 &&
+                Float.compare(that.DKK, DKK) == 0 &&
+                Float.compare(that.GBP, GBP) == 0 &&
+                Float.compare(that.HKD, HKD) == 0 &&
+                Float.compare(that.HRK, HRK) == 0 &&
+                Float.compare(that.HUF, HUF) == 0 &&
+                Float.compare(that.IDR, IDR) == 0 &&
+                Float.compare(that.ILS, ILS) == 0 &&
+                Float.compare(that.INR, INR) == 0 &&
+                Float.compare(that.ISK, ISK) == 0 &&
+                Float.compare(that.JPY, JPY) == 0 &&
+                Float.compare(that.KRW, KRW) == 0 &&
+                Float.compare(that.MXN, MXN) == 0 &&
+                Float.compare(that.MYR, MYR) == 0 &&
+                Float.compare(that.NOK, NOK) == 0 &&
+                Float.compare(that.NZD, NZD) == 0 &&
+                Float.compare(that.PHP, PHP) == 0 &&
+                Float.compare(that.PLN, PLN) == 0 &&
+                Float.compare(that.RON, RON) == 0 &&
+                Float.compare(that.RUB, RUB) == 0 &&
+                Float.compare(that.SEK, SEK) == 0 &&
+                Float.compare(that.SGD, SGD) == 0 &&
+                Float.compare(that.THB, THB) == 0 &&
+                Float.compare(that.TRY, TRY) == 0 &&
+                Float.compare(that.USD, USD) == 0 &&
+                Float.compare(that.ZAR, ZAR) == 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(ID);
-        parcel.writeFloat(EUR);
-        parcel.writeFloat(AUD);
-        parcel.writeFloat(BGN);
-        parcel.writeFloat(BRL);
-        parcel.writeFloat(CAD);
-        parcel.writeFloat(CHF);
-        parcel.writeFloat(CNY);
-        parcel.writeFloat(CZK);
-        parcel.writeFloat(DKK);
-        parcel.writeFloat(GBP);
-        parcel.writeFloat(HKD);
-        parcel.writeFloat(HRK);
-        parcel.writeFloat(HUF);
-        parcel.writeFloat(IDR);
-        parcel.writeFloat(ILS);
-        parcel.writeFloat(INR);
-        parcel.writeFloat(ISK);
-        parcel.writeFloat(JPY);
-        parcel.writeFloat(KRW);
-        parcel.writeFloat(MXN);
-        parcel.writeFloat(MYR);
-        parcel.writeFloat(NOK);
-        parcel.writeFloat(NZD);
-        parcel.writeFloat(PHP);
-        parcel.writeFloat(PLN);
-        parcel.writeFloat(RON);
-        parcel.writeFloat(RUB);
-        parcel.writeFloat(SEK);
-        parcel.writeFloat(SGD);
-        parcel.writeFloat(THB);
-        parcel.writeFloat(TRY);
-        parcel.writeFloat(USD);
-        parcel.writeFloat(ZAR);
+    public int hashCode() {
+        return Objects.hash(EUR, AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR);
     }
-
-
-
 }
