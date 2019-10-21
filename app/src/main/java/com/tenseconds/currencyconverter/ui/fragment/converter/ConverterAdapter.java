@@ -80,16 +80,15 @@ public class ConverterAdapter extends MjolnirRecyclerAdapter<Currency> {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-
                     }
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                         String value = charSequence.toString().replaceAll("\\s+","");
-                        float num = 0;
+                        float num;
 
                         if (value.length() == 0) {
-                            binding.editText.setText("0");
+                            binding.editText.setText("0.0");
                         } else {
                             String s2 = value.replace(",", ".");
                             try {
@@ -98,13 +97,20 @@ public class ConverterAdapter extends MjolnirRecyclerAdapter<Currency> {
                             } catch (Exception e) {
                                 num = 0;
                             }
+
+
+                            Currency item = get(getAdapterPosition());
+                            if (item.getAmount() != num && item.getCurrencyCode().equals(item.getBase())) {
+                                item.setAmount(num);
+                                EventBus.getDefault().post(new onChangeActionEvent(item, Action.ITEM_TEXT_CHANGE));
+
+                            }
+
+
                         }
 
-                        Currency item = get(getAdapterPosition());
-                        if (item.getAmount() != num && binding.editText.isFocused() && item.getCurrencyCode().equals(item.getBase())) {
-                            item.setAmount(num);
-                            EventBus.getDefault().post(new onChangeActionEvent(item, Action.ITEM_TEXT_CHANGE));
-                        }
+
+
 
 
                     }
@@ -115,6 +121,8 @@ public class ConverterAdapter extends MjolnirRecyclerAdapter<Currency> {
                     }
                 });
             }
+
+
 
 
         }
