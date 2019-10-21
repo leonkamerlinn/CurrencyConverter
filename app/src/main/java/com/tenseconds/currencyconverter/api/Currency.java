@@ -101,7 +101,7 @@ public abstract class Currency {
     public boolean equals(@Nullable Object obj) {
         if (obj instanceof Currency) {
             Currency other = (Currency)obj;
-            return other.getValue() == getValue();
+            return other.getFlagRes() == getFlagRes();
         }
         return false;
     }

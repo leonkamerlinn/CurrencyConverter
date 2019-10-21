@@ -88,7 +88,7 @@ public class ConverterAdapter extends MjolnirRecyclerAdapter<Currency> {
                         float num;
 
                         if (value.length() == 0) {
-                            binding.editText.setText("0.0");
+                            binding.editText.setText("0");
                         } else {
                             String s2 = value.replace(",", ".");
                             try {
