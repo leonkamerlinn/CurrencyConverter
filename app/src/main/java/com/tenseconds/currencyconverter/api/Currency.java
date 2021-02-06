@@ -1,5 +1,7 @@
 package com.tenseconds.currencyconverter.api;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.Nullable;
 
 public abstract class Currency {
@@ -48,20 +50,25 @@ public abstract class Currency {
     public static final String USD = "USD";
     public static final String ZAR = "ZAR";
 
+    @SuppressLint("DefaultLocale")
     public static String valueFormat(float number) {
         return String.format("%10.2f", number);
     }
 
+    @SuppressLint("DefaultLocale")
     public static String rateFormat(float number) {
         return String.format("%10.4f", number);
     }
 
 
-
     public abstract float getRate();
+
     public abstract int getFlagRes();
+
     public abstract String getCurrencyCode();
+
     public abstract int getCurrencyNameRes();
+
     public abstract CurrencyRates getRates();
 
 
@@ -100,7 +107,7 @@ public abstract class Currency {
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj instanceof Currency) {
-            Currency other = (Currency)obj;
+            Currency other = (Currency) obj;
             return other.getFlagRes() == getFlagRes();
         }
         return false;

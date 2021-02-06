@@ -61,12 +61,10 @@ import io.reactivex.subjects.ReplaySubject;
 @Singleton
 public class DataRepository {
     private final API.Repository mApi;
-
     private final Observable<Boolean> mConnectivityObservable;
     private Disposable mDisposable;
-    private CurrencyState mCurrencyState = new CurrencyState();
-    private ReplaySubject<CurrencyState> mCurrencyStateReplaySubject = ReplaySubject.create();
-
+    private final CurrencyState mCurrencyState = new CurrencyState();
+    private final ReplaySubject<CurrencyState> mCurrencyStateReplaySubject = ReplaySubject.create();
     public Observable<CurrencyState> getCurrencyState() {
         return mCurrencyStateReplaySubject;
     }

@@ -30,9 +30,9 @@ public interface ApplicationComponent extends AndroidInjector<MainApplication> {
     interface Builder {
         @BindsInstance
         ApplicationComponent.Builder application(Application application);
+
         ApplicationComponent build();
     }
-
 
 
 }
